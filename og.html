@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Last Box — social card</title>
+<style>
+  @font-face { font-family: "Archivo Black"; src: url("./assets/fonts/archivo-black-latin.woff2") format("woff2"); font-weight: 400; font-display: block; }
+  @font-face { font-family: "Archivo"; src: url("./assets/fonts/archivo-latin.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+  @font-face { font-family: "Courier Prime"; src: url("./assets/fonts/courier-prime-400.woff2") format("woff2"); font-weight: 400; font-display: block; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body { background: #f1ece2; font-family: "Archivo", Arial, sans-serif; color: #171512; }
+  .card { display: grid; grid-template-columns: 640px 1fr; width: 1200px; height: 630px; }
+  .copy { background: #171512; color: #f1ece2; padding: 54px 56px 40px; display: flex; flex-direction: column; }
+  .brand { display: flex; align-items: center; gap: 12px; font-family: "Archivo Black", Arial, sans-serif; font-size: 24px; text-transform: uppercase; letter-spacing: -.01em; }
+  .mark { width: 34px; height: 34px; }
+  h1 { margin: 54px 0 0; font-family: "Archivo Black", Arial, sans-serif; font-size: 64px; line-height: .93; letter-spacing: -.025em; max-width: 520px; }
+  h1 em { font-style: normal; color: #ff5a1f; }
+  p { max-width: 430px; margin: 20px 0 0; color: #e5ddcf; font-size: 19px; line-height: 1.45; }
+  .foot { margin-top: auto; display: flex; align-items: center; gap: 12px; font-family: "Courier Prime", monospace; font-size: 12px; color: #ff5a1f; text-transform: uppercase; letter-spacing: .05em; }
+  .foot span { width: 28px; height: 3px; background: #ff5a1f; }
+  .stage { position: relative; background: #f1ece2; display: grid; place-items: center; overflow: hidden; }
+  .stage::before { content: ""; position: absolute; right: -120px; bottom: -160px; width: 520px; height: 520px; background: #d6bd95; border: 3px solid #171512; transform: rotate(8deg); }
+  .label { position: relative; z-index: 1; width: 430px; background: #fffdf8; border: 3px solid #171512; transform: rotate(2deg); }
+  .tape { position: absolute; top: -16px; left: 50%; width: 120px; height: 24px; background: #244bd8; transform: translateX(-50%) rotate(-2deg); }
+  .label__head { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: #171512; color: #f1ece2; font-family: "Courier Prime", monospace; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+  .label__head strong { color: #ff5a1f; font-weight: 400; }
+  .bars { display: flex; gap: 3px; height: 18px; }
+  .bars i { display: block; width: 4px; background: #f1ece2; }
+  .bars i:nth-child(3n) { width: 2px; }
+  .label__body { padding: 16px 18px 18px; }
+  .row { display: grid; grid-template-columns: 64px 1fr 56px; gap: 10px; align-items: baseline; padding: 11px 0; border-bottom: 1px dashed rgba(23,21,18,.3); font-size: 14px; }
+  .row span:first-child, .row span:last-child { font-family: "Courier Prime", monospace; font-size: 9px; text-transform: uppercase; color: #6b645a; }
+  .row strong { font-size: 14px; }
+  .progress { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; margin-top: 16px; }
+  .track { height: 12px; border: 1.5px solid #171512; background: #e5ddcf; }
+  .track i { display: block; width: 62%; height: 100%; background: #ff5a1f; }
+  .progress b { font-family: "Courier Prime", monospace; font-size: 9px; font-weight: 400; }
+  .stamp { position: absolute; right: 22px; top: 22px; z-index: 2; border: 2px solid #244bd8; color: #244bd8; background: #f1ece2; padding: 8px 12px; font-family: "Courier Prime", monospace; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; transform: rotate(3deg); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="copy">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="8" width="26" height="21" fill="#d6bd95" stroke="#f1ece2" stroke-width="2"/><path d="M3 13h26M16 13v16" stroke="#244bd8" stroke-width="3"/><path d="M10 8V4h12v4" fill="none" stroke="#f1ece2" stroke-width="2"/></svg>
+      Last Box
+    </div>
+    <h1>Move out without <em>the 2 a.m. panic.</em></h1>
+    <p>A dated moving checklist built backwards from your move date. Check it off, print it, keep your sanity.</p>
+    <div class="foot"><span></span>lastboxmove.com · free · no signup</div>
+  </div>
+  <div class="stage">
+    <div class="label">
+      <div class="tape"></div>
+      <div class="label__head"><strong>Move plan / No. 001</strong><span class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+      <div class="label__body">
+        <div class="row"><span>8 weeks</span><strong>Set your moving budget</strong><span>Plan</span></div>
+        <div class="row"><span>4 weeks</span><strong>Pack room by room</strong><span>Pack</span></div>
+        <div class="row"><span>1 week</span><strong>Pack the essentials box</strong><span>Pack</span></div>
+        <div class="row"><span>Move day</span><strong>Take meter readings</strong><span>Admin</span></div>
+        <div class="progress"><div class="track"><i></i></div><b>18 / 43 done</b></div>
+      </div>
+    </div>
+    <div class="stamp">Built backwards</div>
+  </div>
+</div>
+</body>
+</html>
