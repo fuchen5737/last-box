@@ -46,6 +46,9 @@
   --mono: "Courier Prime", "Courier New", monospace;
   --max: 1180px;
   --gutter: clamp(20px, 4vw, 48px);
+  --consent-bg: #171512;
+  --consent-fg: #f1ece2;
+  --consent-accent: #ff5a1f;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
