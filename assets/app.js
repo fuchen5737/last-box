@@ -59,6 +59,10 @@ function selectedType() {
   return form?.querySelector('input[name="move-type"]:checked')?.value || "house";
 }
 
+function track(name, params) {
+  if (typeof window.trackEvent === "function") window.trackEvent(name, params);
+}
+
 function loadDone(key, validIds) {
   try {
     const raw = localStorage.getItem(key);
@@ -134,6 +138,11 @@ function buildTask(task) {
     if (due) due.outerHTML = taskDue(task);
     saveDone();
     updateProgress();
+    track("move_task_checked", {
+      move_type: state.plan?.moveType,
+      category: task.category,
+      checked: input.checked,
+    });
   });
 
   li.append(label, body);
@@ -192,7 +201,7 @@ function renderPlan({ scroll = true } = {}) {
   }
 }
 
-function runBuild({ scroll = true } = {}) {
+function runBuild({ scroll = true, trigger = "form" } = {}) {
   clearError();
   const dateValue = dateInput?.value || "";
   if (!dateValue) {
@@ -213,6 +222,14 @@ function runBuild({ scroll = true } = {}) {
   state.done = loadDone(state.key, new Set(built.tasks.map((task) => task.id)));
   renderPlan({ scroll });
   showToast(`Move plan built for ${formatDue(built.moveDate)}.`);
+  const days = Math.round((built.moveDate - new Date()) / 86400000);
+  const daysOut = days < 0 ? "past" : days < 14 ? "under_2_weeks" : days < 30 ? "2_4_weeks" : days < 90 ? "1_3_months" : "3_plus_months";
+  track("move_plan_built", {
+    move_type: built.moveType,
+    tasks: built.total,
+    days_out: daysOut,
+    trigger,
+  });
   return built;
 }
 
@@ -234,6 +251,7 @@ dateInput?.addEventListener("input", () => {
 
 printButton?.addEventListener("click", () => {
   if (!state.plan) return;
+  track("move_plan_printed", { tasks_total: state.plan.total, tasks_done: state.done.size });
   window.print();
 });
 
@@ -262,6 +280,7 @@ function armReset() {
   renderPlan({ scroll: false });
   if (planStatus) planStatus.textContent = "Progress cleared.";
   showToast("Progress cleared.");
+  track("move_progress_reset", { tasks_total: state.plan.total });
 }
 
 resetButton?.addEventListener("click", armReset);
@@ -271,7 +290,7 @@ fillExample?.addEventListener("click", () => {
   dateInput.value = "2027-06-12";
   const house = form.querySelector('input[name="move-type"][value="house"]');
   if (house) house.checked = true;
-  runBuild();
+  runBuild({ trigger: "example" });
 });
 
 const preset = document.body.dataset.presetType;
